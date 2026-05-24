@@ -8,56 +8,45 @@
 import Foundation
 
 print("🔐 PASSWORD TOOL — 'генератор паролей'")
-print(" user вводит длину пароля. Проверка: число? в диапазоне 4–20? → если нет, ошибка. Генерация пароля (a-z, A-Z, 0-9). Вывод пароля. Цикл: 'Сгенерировать ещё? (да/нет)'")
+
+let passwordRange: ClosedRange<Int> = 4...20
+
+struct PasswordConfig {
+    let length: Int
+}
 
 func getLength() -> Int {
-    while true { // // Цикл будет повторяться, пока не сработает return
-        // MARK: - 1️⃣ Сначала выводим подсказку в консоль
-        print("Enter length of password (4 - 20): ", terminator: "")
-        
-        // MARK: - 2️⃣ Затем считываем ввод пользователя
-        let prompt = readLine()?.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // MARK: - Шаг 3️⃣ Проверка ввода
-        guard let prompt = prompt, let length = Int(prompt),
-              length >= 4 && length <= 20 else {
-            print("❌ Length is out of range. enter correct number")
+    while true {
+        print("Enter length of password (4-20): ", terminator: "")
+        guard let input = readLine()?.trimmingCharacters(in: .whitespacesAndNewlines),
+              let length = Int(input),
+              passwordRange.contains(length) else {
+            print("❌ Please enter a number from 4 to 20")
             continue
         }
-        print("✅ Length is correct")
         return length
     }
 }
 
-func generatePassword(length: Int) -> String {
-    
-    
-    
-    
-    return ""
+func generatePassword(config: PasswordConfig) -> String {
+    let allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    let passwordChars = (0..<config.length).compactMap { _ in allChars.randomElement() }
+    return String(passwordChars)
 }
 
-      /* Что ты используешь: 🔐 🔤 🔢 ❌ 🔄 📝 🔥
+while true {
+    let length = getLength()
+    let password = generatePassword(config: PasswordConfig(length: length))
+    print("🔑 Your password: \(password)")
 
-      ✅ guard let для опционалов
-      ✅ throws / do-catch для ошибок
-      ✅ Массив символов + .randomElement()
-      ✅ Цикл while -
-            Запросить длину
-            Сгенерировать пароль
-            Спросить «Ещё? (y/n)»*/
-
-// 2️⃣ Введите длину пароля (4-20):
-// ❌ Ошибка: введите число от 4 до 20
-// 2️⃣ Введите длину пароля (4-20): 8
-// 5️⃣ 🔐 Ваш пароль: aK7mR2qZ
-// 6️⃣ Сгенерировать ещё? (y/n): n
-// 7️⃣ 👋 By, vale.ponick!
-
-
-func generatePassword(length: Int) -> String {
-    return ""
+    print("Generate another one? (y/n): ", terminator: "")
+    let response = readLine()?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    if response == "n" || response == "no" {
+        print("👋 Goodbye!")
+        break
+    }
 }
-func main() {
+
     
-}
+
+
