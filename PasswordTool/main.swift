@@ -11,7 +11,7 @@ print("🔐 PASSWORD TOOL — Генератор паролей")
 
 // MARK: - Constants
 
-private let passwordRange: ClosedRange<Int> = 4...20
+private let passwordRange: ClosedRange<Int> = 4...21
 private let allCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 // MARK: - Models
@@ -69,11 +69,13 @@ while true {
     }
 }
 
-/* 🔐 PASSWORD TOOL — Генератор паролей
- Enter length of password (4-20): 7
- 🔑 Your password: aB3xY9q
- Generate another one? (y/n): no
- 👋 Goodbye! */
-    
+ /* 🔐 PASSWORD TOOL — Генератор паролей
+  Enter length of password (4-21): 7
+  🔑 Your password: tTgISLN
+  Generate another one? (y/n): yes
+  Enter length of password (4-21): 21
+  🔑 Your password: hjrDcOjyYUUMhp7BxaUF8
+  Generate another one? (y/n): no
+  👋 Goodbye! */
 
 
