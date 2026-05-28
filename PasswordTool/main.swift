@@ -11,7 +11,6 @@ print("🔐 PASSWORD TOOL — Генератор паролей")
 
 // MARK: - Constants
 
-private let passwordRange: ClosedRange<Int> = 4...21
 private let allCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 // MARK: - Models
@@ -25,6 +24,7 @@ struct PasswordConfig {
 /// Запрашивает у пользователя длину пароля, проверяет ввод.
 /// - Returns: Корректную длину пароля (Int)
 func getLength() -> Int {
+    let passwordRange: ClosedRange<Int> = 4...21
     while true {
         print("Enter length of password (\(passwordRange.lowerBound)-\(passwordRange.upperBound)): ", terminator: "")
         
